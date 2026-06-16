@@ -1,156 +1,179 @@
 'use client';
 
-import { ShieldCheck, Cpu, Battery, Wifi, X, ChevronLeft, ChevronRight, Camera } from "lucide-react";
-import { useState } from "react";
+import { Zap, Smartphone, Camera, Signal, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
+import { useState } from 'react';
 
-export default function EagleTab({ lang }: { lang: 'en' | 'sv' }) {
-  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+const EagleTab = () => {
+  const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   const images = [
-    '/Eagle Pro/lagenio_001.png',
-    '/Eagle Pro/lagenio_002.png',
-    '/Eagle Pro/lagenio_003.png',
-    '/Eagle Pro/lagenio_004.png',
-    '/Eagle Pro/lagenio_005.png',
-    '/Eagle Pro/lagenio_006.png',
-    '/Eagle Pro/lagenio_007.png',
-    '/Eagle Pro/lagenio_008.png',
-    '/Eagle Pro/lagenio_009.png',
+    '/Eagle%20Pro/lagenio_1.png',
+    '/Eagle%20Pro/lagenio_2.jpg',
+    '/Eagle%20Pro/lagenio_3.jpg',
+    '/Eagle%20Pro/lagenio_4.png',
+    '/Eagle%20Pro/lagenio_5.png',
+    '/Eagle%20Pro/lagenio_6.png',
+    '/Eagle%20Pro/lagenio_7.jpg',
+    '/Eagle%20Pro/lagenio_8.png',
+    '/Eagle%20Pro/lagenio_9.png',
   ];
 
-  const handlePrevious = () => {
-    if (selectedImageIndex !== null) {
-      setSelectedImageIndex((selectedImageIndex - 1 + images.length) % images.length);
-    }
+  const handlePrevImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (selectedImage === null) return;
+    setSelectedImage(selectedImage === 0 ? images.length - 1 : selectedImage - 1);
   };
 
-  const handleNext = () => {
-    if (selectedImageIndex !== null) {
-      setSelectedImageIndex((selectedImageIndex + 1) % images.length);
-    }
+  const handleNextImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (selectedImage === null) return;
+    setSelectedImage(selectedImage === images.length - 1 ? 0 : selectedImage + 1);
   };
 
-  const handleKeyDown = (e: KeyboardEvent) => {
-    if (selectedImageIndex === null) return;
-    if (e.key === 'ArrowLeft') handlePrevious();
-    if (e.key === 'ArrowRight') handleNext();
-    if (e.key === 'Escape') setSelectedImageIndex(null);
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (selectedImage === null) return;
+    if (e.key === 'ArrowLeft') {
+      setSelectedImage(selectedImage === 0 ? images.length - 1 : selectedImage - 1);
+    } else if (e.key === 'ArrowRight') {
+      setSelectedImage(selectedImage === images.length - 1 ? 0 : selectedImage + 1);
+    } else if (e.key === 'Escape') {
+      setSelectedImage(null);
+    }
   };
 
   return (
-    <div className="animate-in slide-in-from-right-4 duration-500 py-4" onKeyDown={handleKeyDown} tabIndex={0}>
-      <div className="text-center mb-10">
-        <h2 className="text-5xl font-black text-amber-600 mb-2 tracking-tight">Eagle Pro</h2>
-        <p className="text-xl text-slate-500 font-medium">
-          {lang === 'en' ? '5G Mini Rugged Phone with Action Camera' : '5G Mini Ruggedtelefon med Actionkamera'}
-        </p>
+    <div className="w-full" onKeyDown={handleKeyDown} tabIndex={0}>
+      {/* Specs */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        <div className="bg-gradient-to-br from-amber-500/10 to-amber-600/10 rounded-lg p-6 border border-amber-200/30">
+          <h3 className="text-xl font-bold text-amber-600 mb-4 flex items-center gap-2">
+            <Zap className="w-5 h-5" />
+            5G Powerhouse
+          </h3>
+          <ul className="space-y-2 text-gray-700">
+            <li>• Ultra-fast 5G connectivity</li>
+            <li>• Snapdragon 8 Gen 2 Leading Version</li>
+            <li>• 12GB/16GB RAM options</li>
+            <li>• Sub-6 GHz & mmWave support</li>
+          </ul>
+        </div>
+
+        <div className="bg-gradient-to-br from-amber-500/10 to-amber-600/10 rounded-lg p-6 border border-amber-200/30">
+          <h3 className="text-xl font-bold text-amber-600 mb-4 flex items-center gap-2">
+            <Camera className="w-5 h-5" />
+            Action Camera Built-in
+          </h3>
+          <ul className="space-y-2 text-gray-700">
+            <li>• 50MP main camera</li>
+            <li>• 4K video recording</li>
+            <li>• Ultra-wide lens</li>
+            <li>• Action-focused features</li>
+          </ul>
+        </div>
+
+        <div className="bg-gradient-to-br from-amber-500/10 to-amber-600/10 rounded-lg p-6 border border-amber-200/30">
+          <h3 className="text-xl font-bold text-amber-600 mb-4 flex items-center gap-2">
+            <Smartphone className="w-5 h-5" />
+            Compact Rugged Design
+          </h3>
+          <ul className="space-y-2 text-gray-700">
+            <li>• Mini 5.5" display</li>
+            <li>• IP68 waterproof (2m/30min)</li>
+            <li>• Drop tested to 1.5m</li>
+            <li>• Lightweight & ergonomic</li>
+          </ul>
+        </div>
+
+        <div className="bg-gradient-to-br from-amber-500/10 to-amber-600/10 rounded-lg p-6 border border-amber-200/30">
+          <h3 className="text-xl font-bold text-amber-600 mb-4 flex items-center gap-2">
+            <Signal className="w-5 h-5" />
+            Enhanced Connectivity
+          </h3>
+          <ul className="space-y-2 text-gray-700">
+            <li>• Dual SIM support</li>
+            <li>• WiFi 6E capability</li>
+            <li>• NFC enabled</li>
+            <li>• GPS + Galileo</li>
+          </ul>
+        </div>
       </div>
 
-      {/* Image Gallery */}
-      <div className="mb-12 max-w-6xl mx-auto">
-        <h3 className="text-2xl font-bold mb-6 text-slate-800">
-          {lang === 'en' ? 'Product Gallery' : 'Produktgalleri'}
-        </h3>
+      {/* Gallery */}
+      <div className="mb-8">
+        <h3 className="text-2xl font-bold text-gray-900 mb-6">Product Gallery</h3>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {images.map((img, idx) => (
+          {images.map((image, index) => (
             <div
-              key={idx}
-              onClick={() => setSelectedImageIndex(idx)}
-              className="relative group cursor-pointer overflow-hidden rounded-lg shadow-md border border-slate-200 hover:shadow-xl transition-all duration-300"
+              key={index}
+              onClick={() => setSelectedImage(index)}
+              className="relative group cursor-pointer overflow-hidden rounded-lg bg-gray-100 aspect-square"
             >
               <img
-                src={img}
-                alt={`Eagle Pro ${idx + 1}`}
-                className="w-full h-40 object-cover group-hover:scale-110 transition-transform duration-300"
+                src={image}
+                alt={`Eagle Pro ${index + 1}`}
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
-                <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-2xl">🔍</span>
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="bg-white/90 rounded-full p-3">
+                    <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="bg-white rounded-2xl shadow-lg border border-slate-200 p-8 max-w-5xl mx-auto">
-        <h3 className="text-2xl font-bold mb-6 border-b pb-4 text-slate-800">
-          {lang === 'en' ? 'Technical Specifications' : 'Tekniska Specifikationer'}
-        </h3>
-        <div className="grid md:grid-cols-2 gap-x-12 gap-y-6">
-          <div>
-            <h4 className="flex items-center font-bold text-slate-800 mb-2"><Cpu className="w-5 h-5 text-amber-600 mr-2"/> Core &amp; Performance</h4>
-            <ul className="text-slate-600 space-y-1 ml-7 text-sm">
-              <li><span className="font-semibold">Processor:</span> Snapdragon 888 5G</li>
-              <li><span className="font-semibold">Memory:</span> 8GB RAM / 128GB ROM</li>
-              <li><span className="font-semibold">OS:</span> Android 16</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="flex items-center font-bold text-slate-800 mb-2"><Camera className="w-5 h-5 text-amber-600 mr-2"/> Camera</h4>
-            <ul className="text-slate-600 space-y-1 ml-7 text-sm">
-              <li><span className="font-semibold">Main:</span> 48MP Ultra Wide</li>
-              <li><span className="font-semibold">Action Cam:</span> 1080p 60FPS Built-in</li>
-              <li><span className="font-semibold">Front:</span> 16MP</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="flex items-center font-bold text-slate-800 mb-2"><ShieldCheck className="w-5 h-5 text-amber-600 mr-2"/> Durability</h4>
-            <ul className="text-slate-600 space-y-1 ml-7 text-sm">
-              <li><span className="font-semibold">Certification:</span> IP68 / MIL-STD-810H</li>
-              <li><span className="font-semibold">Drop Test:</span> 1.5m Shockproof</li>
-              <li><span className="font-semibold">Build:</span> 220g Aluminum Frame</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="flex items-center font-bold text-slate-800 mb-2"><Battery className="w-5 h-5 text-amber-600 mr-2"/> Battery &amp; 5G</h4>
-            <ul className="text-slate-600 space-y-1 ml-7 text-sm">
-              <li><span className="font-semibold">Capacity:</span> 4,500mAh</li>
-              <li><span className="font-semibold">Network:</span> 5G SA/NSA, Wi-Fi 6E</li>
-              <li><span className="font-semibold">Charging:</span> 65W Super Fast</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
       {/* Modal */}
-      {selectedImageIndex !== null && (
+      {selectedImage !== null && (
         <div
-          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
-          onClick={() => setSelectedImageIndex(null)}
+          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+          onClick={() => setSelectedImage(null)}
         >
-          <div className="relative max-w-4xl max-h-[90vh] w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+          <div className="relative max-w-4xl max-h-[90vh] flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+            {/* Close button */}
             <button
-              onClick={() => setSelectedImageIndex(null)}
-              className="absolute top-4 right-4 text-white bg-black/50 hover:bg-black/70 rounded-full p-2 transition-colors z-10"
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-4 right-4 bg-white/90 hover:bg-white rounded-full p-2 transition-colors z-10"
             >
-              <X size={24} />
+              <X className="w-6 h-6 text-gray-800" />
             </button>
 
-            <button
-              onClick={handlePrevious}
-              className="absolute left-4 text-white bg-black/50 hover:bg-black/70 rounded-full p-2 transition-colors z-10"
-            >
-              <ChevronLeft size={32} />
-            </button>
-
+            {/* Image */}
             <img
-              src={images[selectedImageIndex]}
-              alt="Enlarged"
-              className="max-w-full max-h-[90vh] object-contain rounded-lg"
+              src={images[selectedImage]}
+              alt={`Eagle Pro ${selectedImage + 1}`}
+              className="max-w-full max-h-[80vh] object-contain rounded-lg"
             />
 
+            {/* Navigation */}
             <button
-              onClick={handleNext}
-              className="absolute right-4 text-white bg-black/50 hover:bg-black/70 rounded-full p-2 transition-colors z-10"
+              onClick={handlePrevImage}
+              className="absolute left-4 bg-white/90 hover:bg-white rounded-full p-3 transition-colors"
             >
-              <ChevronRight size={32} />
+              <ChevronLeft className="w-6 h-6 text-gray-800" />
             </button>
 
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white bg-black/50 px-4 py-2 rounded-full text-sm">
-              {selectedImageIndex + 1} / {images.length}
+            <button
+              onClick={handleNextImage}
+              className="absolute right-4 bg-white/90 hover:bg-white rounded-full p-3 transition-colors"
+            >
+              <ChevronRight className="w-6 h-6 text-gray-800" />
+            </button>
+
+            {/* Counter */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/60 text-white px-4 py-2 rounded-full text-sm font-medium">
+              {selectedImage + 1} / {images.length}
             </div>
           </div>
         </div>
       )}
     </div>
   );
-}
+};
+
+export default EagleTab;

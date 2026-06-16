@@ -1,154 +1,177 @@
 'use client';
 
-import { ShieldCheck, Cpu, Battery, Wifi, X, ChevronLeft, ChevronRight, Zap } from "lucide-react";
-import { useState } from "react";
+import { Zap, Smartphone, Cpu, Shield, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
+import { useState } from 'react';
 
-export default function PantherTab({ lang }: { lang: 'en' | 'sv' }) {
-  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+const PantherTab = () => {
+  const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   const images = [
-    '/Panther 2 Pro/lagenio_001.png',
-    '/Panther 2 Pro/lagenio_002.png',
-    '/Panther 2 Pro/lagenio_003.png',
-    '/Panther 2 Pro/lagenio_004.png',
-    '/Panther 2 Pro/lagenio_005.png',
-    '/Panther 2 Pro/lagenio_006.png',
-    '/Panther 2 Pro/lagenio_007.png',
+    '/Panther%202%20Pro/lagenio_1.png',
+    '/Panther%202%20Pro/lagenio_2.jpg',
+    '/Panther%202%20Pro/lagenio_3.jpg',
+    '/Panther%202%20Pro/lagenio_4.png',
+    '/Panther%202%20Pro/lagenio_5.jpg',
+    '/Panther%202%20Pro/lagenio_6.png',
+    '/Panther%202%20Pro/lagenio_7.jpg',
   ];
 
-  const handlePrevious = () => {
-    if (selectedImageIndex !== null) {
-      setSelectedImageIndex((selectedImageIndex - 1 + images.length) % images.length);
-    }
+  const handlePrevImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (selectedImage === null) return;
+    setSelectedImage(selectedImage === 0 ? images.length - 1 : selectedImage - 1);
   };
 
-  const handleNext = () => {
-    if (selectedImageIndex !== null) {
-      setSelectedImageIndex((selectedImageIndex + 1) % images.length);
-    }
+  const handleNextImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (selectedImage === null) return;
+    setSelectedImage(selectedImage === images.length - 1 ? 0 : selectedImage + 1);
   };
 
-  const handleKeyDown = (e: KeyboardEvent) => {
-    if (selectedImageIndex === null) return;
-    if (e.key === 'ArrowLeft') handlePrevious();
-    if (e.key === 'ArrowRight') handleNext();
-    if (e.key === 'Escape') setSelectedImageIndex(null);
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (selectedImage === null) return;
+    if (e.key === 'ArrowLeft') {
+      setSelectedImage(selectedImage === 0 ? images.length - 1 : selectedImage - 1);
+    } else if (e.key === 'ArrowRight') {
+      setSelectedImage(selectedImage === images.length - 1 ? 0 : selectedImage + 1);
+    } else if (e.key === 'Escape') {
+      setSelectedImage(null);
+    }
   };
 
   return (
-    <div className="animate-in slide-in-from-right-4 duration-500 py-4" onKeyDown={handleKeyDown} tabIndex={0}>
-      <div className="text-center mb-10">
-        <h2 className="text-5xl font-black text-purple-700 mb-2 tracking-tight">Panther 2 Pro</h2>
-        <p className="text-xl text-slate-500 font-medium">
-          {lang === 'en' ? 'Ultra-Thin Rugged Powerhouse' : 'Ultra-Tunn Ruggedtelefon'}
-        </p>
+    <div className="w-full" onKeyDown={handleKeyDown} tabIndex={0}>
+      {/* Specs */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        <div className="bg-gradient-to-br from-purple-500/10 to-purple-600/10 rounded-lg p-6 border border-purple-200/30">
+          <h3 className="text-xl font-bold text-purple-600 mb-4 flex items-center gap-2">
+            <Zap className="w-5 h-5" />
+            Ultra-Thin Rugged Power
+          </h3>
+          <ul className="space-y-2 text-gray-700">
+            <li>• Remarkably thin 8.8mm profile</li>
+            <li>• Military-grade protection</li>
+            <li>• IP68 waterproof & dustproof</li>
+            <li>• MIL-STD-810H certified</li>
+          </ul>
+        </div>
+
+        <div className="bg-gradient-to-br from-purple-500/10 to-purple-600/10 rounded-lg p-6 border border-purple-200/30">
+          <h3 className="text-xl font-bold text-purple-600 mb-4 flex items-center gap-2">
+            <Cpu className="w-5 h-5" />
+            Performance & Specs
+          </h3>
+          <ul className="space-y-2 text-gray-700">
+            <li>• Snapdragon 8 Gen 3 Leading</li>
+            <li>• 12GB/16GB/24GB RAM</li>
+            <li>• Up to 512GB storage</li>
+            <li>• 6.7" FHD+ display</li>
+          </ul>
+        </div>
+
+        <div className="bg-gradient-to-br from-purple-500/10 to-purple-600/10 rounded-lg p-6 border border-purple-200/30">
+          <h3 className="text-xl font-bold text-purple-600 mb-4 flex items-center gap-2">
+            <Shield className="w-5 h-5" />
+            Durability Features
+          </h3>
+          <ul className="space-y-2 text-gray-700">
+            <li>• Gorilla Glass Armor front</li>
+            <li>• Drop protection up to 2m</li>
+            <li>• Thermal cooling system</li>
+            <li>• Reinforced frame design</li>
+          </ul>
+        </div>
+
+        <div className="bg-gradient-to-br from-purple-500/10 to-purple-600/10 rounded-lg p-6 border border-purple-200/30">
+          <h3 className="text-xl font-bold text-purple-600 mb-4 flex items-center gap-2">
+            <Smartphone className="w-5 h-5" />
+            Smart Features
+          </h3>
+          <ul className="space-y-2 text-gray-700">
+            <li>• 5G + WiFi 7 connectivity</li>
+            <li>• 120W fast charging</li>
+            <li>• Dual thermal camera</li>
+            <li>• Always-on display</li>
+          </ul>
+        </div>
       </div>
 
-      {/* Image Gallery */}
-      <div className="mb-12 max-w-6xl mx-auto">
-        <h3 className="text-2xl font-bold mb-6 text-slate-800">
-          {lang === 'en' ? 'Product Gallery' : 'Produktgalleri'}
-        </h3>
+      {/* Gallery */}
+      <div className="mb-8">
+        <h3 className="text-2xl font-bold text-gray-900 mb-6">Product Gallery</h3>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {images.map((img, idx) => (
+          {images.map((image, index) => (
             <div
-              key={idx}
-              onClick={() => setSelectedImageIndex(idx)}
-              className="relative group cursor-pointer overflow-hidden rounded-lg shadow-md border border-slate-200 hover:shadow-xl transition-all duration-300"
+              key={index}
+              onClick={() => setSelectedImage(index)}
+              className="relative group cursor-pointer overflow-hidden rounded-lg bg-gray-100 aspect-square"
             >
               <img
-                src={img}
-                alt={`Panther 2 Pro ${idx + 1}`}
-                className="w-full h-40 object-cover group-hover:scale-110 transition-transform duration-300"
+                src={image}
+                alt={`Panther 2 Pro ${index + 1}`}
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
-                <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-2xl">🔍</span>
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="bg-white/90 rounded-full p-3">
+                    <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="bg-white rounded-2xl shadow-lg border border-slate-200 p-8 max-w-5xl mx-auto">
-        <h3 className="text-2xl font-bold mb-6 border-b pb-4 text-slate-800">
-          {lang === 'en' ? 'Technical Specifications' : 'Tekniska Specifikationer'}
-        </h3>
-        <div className="grid md:grid-cols-2 gap-x-12 gap-y-6">
-          <div>
-            <h4 className="flex items-center font-bold text-slate-800 mb-2"><Cpu className="w-5 h-5 text-purple-600 mr-2"/> Core &amp; Performance</h4>
-            <ul className="text-slate-600 space-y-1 ml-7 text-sm">
-              <li><span className="font-semibold">Processor:</span> Snapdragon 870 Pro</li>
-              <li><span className="font-semibold">Memory:</span> 12GB RAM / 256GB ROM</li>
-              <li><span className="font-semibold">OS:</span> Android 16</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="flex items-center font-bold text-slate-800 mb-2"><Zap className="w-5 h-5 text-purple-600 mr-2"/> Design &amp; Form Factor</h4>
-            <ul className="text-slate-600 space-y-1 ml-7 text-sm">
-              <li><span className="font-semibold">Thickness:</span> Only 11.2mm</li>
-              <li><span className="font-semibold">Weight:</span> 195g (Ultra-light)</li>
-              <li><span className="font-semibold">Display:</span> 6.5" AMOLED 120Hz</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="flex items-center font-bold text-slate-800 mb-2"><ShieldCheck className="w-5 h-5 text-purple-600 mr-2"/> Military Grade Protection</h4>
-            <ul className="text-slate-600 space-y-1 ml-7 text-sm">
-              <li><span className="font-semibold">Certification:</span> IP69K / MIL-STD-810H</li>
-              <li><span className="font-semibold">Drop Test:</span> 2.0m Titanium Bumper</li>
-              <li><span className="font-semibold">Water Proof:</span> Submersible 1m/30min</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="flex items-center font-bold text-slate-800 mb-2"><Battery className="w-5 h-5 text-purple-600 mr-2"/> Battery &amp; Connectivity</h4>
-            <ul className="text-slate-600 space-y-1 ml-7 text-sm">
-              <li><span className="font-semibold">Capacity:</span> 5,400mAh Fast Charge</li>
-              <li><span className="font-semibold">Network:</span> 5G, Wi-Fi 6E, Dual SIM</li>
-              <li><span className="font-semibold">Audio:</span> Dolby Atmos Stereo</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
       {/* Modal */}
-      {selectedImageIndex !== null && (
+      {selectedImage !== null && (
         <div
-          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
-          onClick={() => setSelectedImageIndex(null)}
+          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+          onClick={() => setSelectedImage(null)}
         >
-          <div className="relative max-w-4xl max-h-[90vh] w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+          <div className="relative max-w-4xl max-h-[90vh] flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+            {/* Close button */}
             <button
-              onClick={() => setSelectedImageIndex(null)}
-              className="absolute top-4 right-4 text-white bg-black/50 hover:bg-black/70 rounded-full p-2 transition-colors z-10"
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-4 right-4 bg-white/90 hover:bg-white rounded-full p-2 transition-colors z-10"
             >
-              <X size={24} />
+              <X className="w-6 h-6 text-gray-800" />
             </button>
 
-            <button
-              onClick={handlePrevious}
-              className="absolute left-4 text-white bg-black/50 hover:bg-black/70 rounded-full p-2 transition-colors z-10"
-            >
-              <ChevronLeft size={32} />
-            </button>
-
+            {/* Image */}
             <img
-              src={images[selectedImageIndex]}
-              alt="Enlarged"
-              className="max-w-full max-h-[90vh] object-contain rounded-lg"
+              src={images[selectedImage]}
+              alt={`Panther 2 Pro ${selectedImage + 1}`}
+              className="max-w-full max-h-[80vh] object-contain rounded-lg"
             />
 
+            {/* Navigation */}
             <button
-              onClick={handleNext}
-              className="absolute right-4 text-white bg-black/50 hover:bg-black/70 rounded-full p-2 transition-colors z-10"
+              onClick={handlePrevImage}
+              className="absolute left-4 bg-white/90 hover:bg-white rounded-full p-3 transition-colors"
             >
-              <ChevronRight size={32} />
+              <ChevronLeft className="w-6 h-6 text-gray-800" />
             </button>
 
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white bg-black/50 px-4 py-2 rounded-full text-sm">
-              {selectedImageIndex + 1} / {images.length}
+            <button
+              onClick={handleNextImage}
+              className="absolute right-4 bg-white/90 hover:bg-white rounded-full p-3 transition-colors"
+            >
+              <ChevronRight className="w-6 h-6 text-gray-800" />
+            </button>
+
+            {/* Counter */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/60 text-white px-4 py-2 rounded-full text-sm font-medium">
+              {selectedImage + 1} / {images.length}
             </div>
           </div>
         </div>
       )}
     </div>
   );
-}
+};
+
+export default PantherTab;
