@@ -10,10 +10,16 @@ export default function PantherTab({ lang }: { lang: 'en' | 'sv' }) {
         </p>
       </div>
       
-      <div className="grid md:grid-cols-3 gap-6 mb-12 max-w-6xl mx-auto">
-        <img src="/IMG_4573.webp" alt="Panther 2 Pro Design" className="rounded-2xl shadow-md border border-slate-200 w-full object-cover" />
-        <img src="/IMG_4575.webp" alt="11.3mm Slim Profile" className="rounded-2xl shadow-md border border-slate-200 w-full object-cover" />
-        <img src="/IMG_4574.webp" alt="Durability Features" className="rounded-2xl shadow-md border border-slate-200 w-full object-cover" />
+      <div className="grid md:grid-cols-2 gap-8 mb-12 max-w-5xl mx-auto">
+        <img src="/IMG_4573.webp" alt="Panther 2 Pro Design" className="rounded-2xl shadow-md border border-slate-200 w-full h-80 object-cover" />
+        <img src="/IMG_4575.webp" alt="11.3mm Slim Profile" className="rounded-2xl shadow-md border border-slate-200 w-full h-80 object-cover" />
+        <img src="/IMG_4574.webp" alt="Durability Features" className="rounded-2xl shadow-md border border-slate-200 w-full h-80 object-cover" />
+        
+        {/* Placeholder for 4th Panther Image */}
+        <div className="rounded-2xl border-2 border-dashed border-slate-300 w-full h-80 flex flex-col items-center justify-center bg-slate-100 text-slate-400">
+          <span className="font-bold text-lg mb-1">Slide photo here</span>
+          <span className="text-sm">Panther 4th Image</span>
+        </div>
       </div>
 
       <div className="bg-white rounded-2xl shadow-lg border border-slate-200 p-8 max-w-5xl mx-auto">

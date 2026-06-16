@@ -10,6 +10,26 @@ export default function EagleTab({ lang }: { lang: 'en' | 'sv' }) {
         </p>
       </div>
 
+      <div className="grid md:grid-cols-2 gap-8 mb-12 max-w-5xl mx-auto">
+        {/* Placeholders for all 4 Eagle Images */}
+        <div className="rounded-2xl border-2 border-dashed border-slate-300 w-full h-80 flex flex-col items-center justify-center bg-slate-100 text-slate-400">
+          <span className="font-bold text-lg mb-1">Slide photo here</span>
+          <span className="text-sm">Eagle 1st Image</span>
+        </div>
+        <div className="rounded-2xl border-2 border-dashed border-slate-300 w-full h-80 flex flex-col items-center justify-center bg-slate-100 text-slate-400">
+          <span className="font-bold text-lg mb-1">Slide photo here</span>
+          <span className="text-sm">Eagle 2nd Image</span>
+        </div>
+        <div className="rounded-2xl border-2 border-dashed border-slate-300 w-full h-80 flex flex-col items-center justify-center bg-slate-100 text-slate-400">
+          <span className="font-bold text-lg mb-1">Slide photo here</span>
+          <span className="text-sm">Eagle 3rd Image</span>
+        </div>
+        <div className="rounded-2xl border-2 border-dashed border-slate-300 w-full h-80 flex flex-col items-center justify-center bg-slate-100 text-slate-400">
+          <span className="font-bold text-lg mb-1">Slide photo here</span>
+          <span className="text-sm">Eagle 4th Image</span>
+        </div>
+      </div>
+
       <div className="bg-white rounded-2xl shadow-lg border border-slate-200 p-8 max-w-5xl mx-auto">
         <h3 className="text-2xl font-bold mb-6 border-b pb-4 text-slate-800">
           {lang === 'en' ? 'Technical Specifications' : 'Tekniska Specifikationer'}

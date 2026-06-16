@@ -11,8 +11,18 @@ export default function RhinoTab({ lang }: { lang: 'en' | 'sv' }) {
       </div>
       
       <div className="grid md:grid-cols-2 gap-8 mb-12 max-w-5xl mx-auto">
-        <img src="/rhino-1-front.jpg" alt="Rhino 1 Pro Front" className="rounded-2xl shadow-md border border-slate-200 w-full object-cover" />
-        <img src="/rhino-1-box.jpeg" alt="Rhino 1 Pro Box" className="rounded-2xl shadow-md border border-slate-200 w-full object-cover" />
+        <img src="/rhino-1-front.jpeg" alt="Rhino 1 Pro Front" className="rounded-2xl shadow-md border border-slate-200 w-full h-80 object-cover" />
+        <img src="/rhino-1-box.jpeg" alt="Rhino 1 Pro Box" className="rounded-2xl shadow-md border border-slate-200 w-full h-80 object-cover" />
+        
+        {/* Placeholders for 3rd and 4th Rhino Images */}
+        <div className="rounded-2xl border-2 border-dashed border-slate-300 w-full h-80 flex flex-col items-center justify-center bg-slate-100 text-slate-400">
+          <span className="font-bold text-lg mb-1">Slide photo here</span>
+          <span className="text-sm">Rhino 3rd Image</span>
+        </div>
+        <div className="rounded-2xl border-2 border-dashed border-slate-300 w-full h-80 flex flex-col items-center justify-center bg-slate-100 text-slate-400">
+          <span className="font-bold text-lg mb-1">Slide photo here</span>
+          <span className="text-sm">Rhino 4th Image</span>
+        </div>
       </div>
 
       <div className="bg-white rounded-2xl shadow-lg border border-slate-200 p-8 max-w-5xl mx-auto">
